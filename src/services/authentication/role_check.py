@@ -8,5 +8,9 @@ VALID_ROLE_ACTIONS = {
 
 
 def role_can(role, action):
-    """Return whether a role is allowed to perform an action."""
+    """Return whether a role is allowed to perform an action.
+
+    Students submit and view their own requests, staff add operational actions,
+    and administrators can manage roles. Unknown roles are denied by default.
+    """
     return action in VALID_ROLE_ACTIONS.get(role, ())
