@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+<section class="card narrow">
+  <h1>Log in</h1>
+  <form method="post">
+    <label>Email <input name="email" type="email" required autocomplete="username"></label>
+    <label>Password <input name="password" type="password" required autocomplete="current-password"></label>
+    <button type="submit">Log in</button>
+  </form>
+  <p class="demo"><strong>Demo accounts</strong><br>
+    student@example.com / student123<br>
+    staff@example.com / staff123<br>
+    admin@example.com / admin123
+  </p>
+</section>
+{% endblock %}

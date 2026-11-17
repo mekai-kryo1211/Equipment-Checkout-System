@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Log returns{% endblock %}
+{% block content %}
+<h1>Active checkouts</h1>
+<table>
+  <thead><tr><th>Borrower</th><th>Equipment</th><th>Due date</th><th>Overdue</th><th>Return</th></tr></thead>
+  <tbody>
+  {% for request in requests %}
+    <tr>
+      <td>{{ request.email }}</td><td>{{ request.item_name }}</td><td>{{ request.due_date }}</td>
+      <td>{% if request.overdue %}<span class="overdue">OVERDUE</span>{% else %}No{% endif %}</td>
+      <td>
+        <form class="inline" method="post" action="{{ url_for('log_return', request_id=request.request_id) }}">
+          <select name="condition" required>
+            <option value="">Condition</option>
+            <option>excellent</option><option>good</option><option>fair</option><option>damaged</option>
+          </select>
+          <input name="notes" placeholder="Notes" maxlength="500">
+          <button type="submit">Log return</button>
+        </form>
+      </td>
+    </tr>
+  {% else %}
+    <tr><td colspan="5">No active checkouts.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

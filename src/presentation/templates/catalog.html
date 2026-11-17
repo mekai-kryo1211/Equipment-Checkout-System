@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Equipment catalog{% endblock %}
+{% block content %}
+<h1>Equipment catalog</h1>
+<div class="grid">
+{% for item in equipment %}
+  <article class="card">
+    <h2>{{ item.name }}</h2>
+    <p><span class="tag">{{ item.category }}</span></p>
+    <p>Condition: {{ item.item_condition }}</p>
+    <p>Status: <strong class="status {{ item.status }}">{{ item.status|replace('_', ' ') }}</strong></p>
+    {% if session.get('role') == 'student' or session.get('role') == 'admin' %}
+      {% if item.status == 'available' %}
+      <form method="post" action="{{ url_for('submit_request', item_id=item.item_id) }}">
+        <label>Requested return date
+          <input name="requested_return_date" type="date" required>
+        </label>
+        <button type="submit">Request checkout</button>
+      </form>
+      {% endif %}
+    {% endif %}
+  </article>
+{% else %}
+  <p>No equipment has been added.</p>
+{% endfor %}
+</div>
+{% endblock %}

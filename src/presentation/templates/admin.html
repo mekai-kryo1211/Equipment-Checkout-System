@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Administration{% endblock %}
+{% block content %}
+<h1>Administration</h1>
+<section class="card">
+  <h2>Users and roles</h2>
+  <table>
+    <thead><tr><th>Email</th><th>Role</th><th>Change</th></tr></thead>
+    <tbody>
+    {% for user in users %}
+      <tr><td>{{ user.email }}</td><td>{{ user.role }}</td><td>
+        <form class="inline" method="post" action="{{ url_for('change_role', user_id=user.user_id) }}">
+          <select name="role">
+            <option {% if user.role == 'student' %}selected{% endif %}>student</option>
+            <option {% if user.role == 'staff' %}selected{% endif %}>staff</option>
+            <option {% if user.role == 'admin' %}selected{% endif %}>admin</option>
+          </select>
+          <button type="submit">Update</button>
+        </form>
+      </td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+<section class="card">
+  <h2>Recent audit log</h2>
+  <table>
+    <thead><tr><th>Time</th><th>Actor</th><th>Action</th><th>Details</th></tr></thead>
+    <tbody>
+    {% for log in audit_rows %}
+      <tr><td>{{ log.created_at }}</td><td>{{ log.actor_email or 'system' }}</td><td>{{ log.action }}</td><td>{{ log.details or '' }}</td></tr>
+    {% else %}
+      <tr><td colspan="4">No audit entries.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}
