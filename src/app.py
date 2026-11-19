@@ -64,6 +64,10 @@ def create_app(test_config=None):
             ("Dell Precision Laptop", "Computer", "good"),
             ("Epson Projector", "Presentation", "good"),
             ("Yamaha Keyboard", "Audio", "fair"),
+            ("JBL Speaker", "Audio", "excellent"),
+            ("Apple Ipad", "Tablet", "good"),
+            ("VR goggles", "Headset", "fair"),
+            ("HP DeskJet", "Printer", "excellent"),
         )
         for name, category, condition in seed_equipment:
             if connection.execute("SELECT 1 FROM equipment WHERE name = ?", (name,)).fetchone() is None:
