@@ -4,6 +4,8 @@
 
 The Equipment Checkout System centralizes inventory tracking and enforces accountability through role-based access and activity logging. Staff can see what equipment is available and who is responsible for each checked-out item. The system is a Flask web application backed by SQLite.
 
+Github Link: https://github.com/mekai-kryo1211/Equipment-Checkout-System 
+
 ## Team Members
 
 - Mekai Randolph
