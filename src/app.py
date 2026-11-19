@@ -9,8 +9,8 @@ from os import environ
 from flask import Flask, flash, g, redirect, render_template, request, session, url_for
 from werkzeug.security import generate_password_hash
 
-from .services.authentication.auth_service import authenticate, create_user
-from .controllers.checkout_controller import validate_checkout_request
+from src.services.authentication.auth_service import authenticate, create_user
+from src.controllers.checkout_controller import validate_checkout_request
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEFAULT_DATABASE = str(BASE_DIR / "equipment.db")

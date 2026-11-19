@@ -75,7 +75,7 @@ The SQLite database at `equipment.db` and its seeded demo users/equipment are cr
 ## How to Run
 
 ```powershell
-py -m flask --app src/app run --debug
+py -m flask --app src.app run --debug
 ```
 
 Open http://127.0.0.1:5000 in a browser.
@@ -84,7 +84,7 @@ For a stable session key outside development, set `SECRET_KEY` before starting t
 
 ```powershell
 $env:SECRET_KEY="replace-with-a-random-secret"
-py -m flask --app src/app run
+py -m flask --app src.app run
 ```
 
 ## Validation and Testing
